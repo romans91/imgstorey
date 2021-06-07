@@ -15,6 +15,7 @@ public class AwsConfig {
     @Bean
     public AmazonS3 s3() {
         AwsKeys awsKeys = new AwsKeys("rootkey.csv");
+        Regions awsBucketRegion = Regions.AP_SOUTHEAST_2;
 
         AWSCredentials awsCredentials = new BasicAWSCredentials(
                 awsKeys.getAwsAccessKeyId(),
@@ -22,7 +23,7 @@ public class AwsConfig {
 
         return AmazonS3ClientBuilder
                 .standard()
-                .withRegion(Regions.AP_SOUTHEAST_2)
+                .withRegion(awsBucketRegion)
                 .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
                 .build();
     }

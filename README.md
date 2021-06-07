@@ -40,7 +40,7 @@ This will give you access to the database objects in the form of a user interfac
 
 Create a new data source from the Database Tool Window, select "PostgreSQL" as the data source type, and input your PostgreSQL login details and port number into the form.
 
-### Set spring data source properties
+### Set PostgreSQL data source properties
 
 Open "application.properties" found in "src/main/resources", and set the following properties:
 
@@ -49,6 +49,30 @@ Open "application.properties" found in "src/main/resources", and set the followi
 `spring.datasource.username=[PostgreSQL username]`
 
 `spring.datasource.password=[PostgreSQL password]`
+
+## Amazon Web Services file storage configuration
+
+### Creating an Amazon Web Services S3 bucket
+
+Sign into the AWS console found in the following link:
+
+[Amazon Web Services home page]{https://aws.amazon.com/}
+
+Use the console to create an Amazon S3 bucket via "Services" -> "Storage" -> "S3". 
+This bucket must be named "imgstorey-images".
+
+[Click here for detailed instructions on S3 bucket creation]{https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html}
+
+### Using your Amazon Web Services S3 bucket's credentials in your application
+
+First, ensure the AWS Region that your bucket belongs to matches the region specified in the "awsBucketRegion" variable of the "AwsConfig" class.
+This class is found in "com.romans91.imgstorey.config" package in the "src/main/java" directory.
+
+For example, an awsBucketRegion variable with a value of "Regions.AP_SOUTHEAST_2" corresponds to the AWS Region named "Asia Pacific (Sydney) ap-southeast-2".
+
+Then, create a new access key and secret access key pair in the dashboard via "[your username]" -> "My Security Credentials" -> "Access Keys".
+Creating a ser of credentials will automatically download a file named "rootkey.csv", which contains these credentials.
+Place it into the root folder of this repository, and prepare to run the backend application!
 
 ### Run the application with IntelliJ IDEA
 
